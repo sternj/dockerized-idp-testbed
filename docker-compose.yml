@@ -58,6 +58,26 @@ services:
     networks:
      - back
 
+  db:
+    image: postgres
+    networks: 
+     - front
+  
+  web:
+    build: ./django/
+    volumes: 
+     - ./django:/code
+    networks: 
+     - front
+    links:
+     - ldap
+     - idp
+     - httpd-proxy
+     - sp
+    ports:
+      - "8000:8000"
+    command: "python3 manage.py runserver 0.0.0.0:8000"
+
 networks:
   front:
     driver: bridge
