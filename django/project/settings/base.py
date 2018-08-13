@@ -25,7 +25,7 @@ SECRET_KEY = 'u5^i$cit5b6ae+_m2fkmgnv5rc6x3^6w=gp6m%()1wsfdx&16q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -48,10 +48,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'shibboleth.middleware.ShibbolethRemoteUserMiddleware',
 ]
 
 ROOT_URLCONF = 'project.urls'
 
+AUTHENTICATION_BACKENDS = (
+    'shibboleth.backends.ShibbolethRemoteUserBackend',
+)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -70,6 +74,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
+LOGIN_URL = 'https://idptestbed/idp/profile/SAML2/Redirect/SSO'
+SHIBBOLETH_ATTRIBUTE_MAP = {
+
+}
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases

@@ -69,12 +69,14 @@ services:
      - ./django:/code
     networks: 
      - front
+     - back
     links:
      - httpd-proxy
      - sp
+     - db
     ports:
       - "8000:8000"
-    command: "python3 manage.py runserver 0.0.0.0:8000"
+    command: bash -c "python3 manage.py runserver 0.0.0.0:8000"
 
 networks:
   front:
