@@ -70,8 +70,6 @@ services:
     networks: 
      - front
     links:
-     - ldap
-     - idp
      - httpd-proxy
      - sp
     ports:
