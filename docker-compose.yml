@@ -64,9 +64,7 @@ services:
      - front
   
   web:
-    build: ./django/
-    volumes: 
-     - ./django:/code
+    build: ./flask/
     networks: 
      - front
      - back
@@ -76,7 +74,7 @@ services:
      - db
     ports:
       - "8000:8000"
-    command: bash -c "python3 manage.py runserver 0.0.0.0:8000"
+    command: flask run --host=0.0.0.0 --port=8000
 
 networks:
   front:
