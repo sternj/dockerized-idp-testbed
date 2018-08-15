@@ -9,7 +9,7 @@ ext = SSO(app=app)
 SSO_ATTRIBUTE_MAP = {
     'ADFS_LOGIN': (True, 'nickname'),
 }
-app.config['SSO_LOGIN_URL'] = '/login'
+app.config['SSO_LOGIN_URL'] = '/web/login'
 app.config['SSO_ATTRIBUTE_MAP'] = SSO_ATTRIBUTE_MAP
 def time_string():
     t = datetime.now().time()
@@ -33,8 +33,5 @@ def index():
     return '<h1>Hello, World!</h1><h2>Server time: {0}</h2> <h2>User: {1}</h2>'.format(t,user)
 
 @app.route('/login')
-def login():
-    """Display user information or force login."""
-    if 'user' in session:
-        return redirect('/')
-    return redirect(app.config['SSO_LOGIN_URL'])
+def redirection():
+    return redirect('/web')
